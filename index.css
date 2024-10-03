@@ -8946,3 +8946,21 @@ swiper-container .swiper-notification {
         display: none;
     }
 }
+
+@media (max-width: 1024px) {
+    .c-section-focusproduct__new-image {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .c-section-homeintro__new-image_left {
+        display: none;
+    }
+}
+
+@media (max-width: 670px) {
+    .c-section-homeintro__potatoes__text {
+        margin-top: 200px;
+    }
+}
