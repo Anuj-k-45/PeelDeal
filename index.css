@@ -3723,7 +3723,7 @@ swiper-container .swiper-notification {
 
 .c-title.--brush-green span {
     color: #fff;
-    background-image: url(.././img/paintbrush_green.svg)
+    background-image: url(./assets/paintbrush_brown.svg)
 }
 
 .c-title.--brush-red span {
@@ -4907,7 +4907,7 @@ swiper-container .swiper-notification {
 
 .c-header-modular__text {
     position: relative;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto 1.5rem auto;
     text-align: center
 }
@@ -8959,8 +8959,14 @@ swiper-container .swiper-notification {
     }
 }
 
+.c-section-homeintro__potatoes__text{
+    width: 30%;
+}
+
 @media (max-width: 670px) {
     .c-section-homeintro__potatoes__text {
         margin-top: 200px;
+        padding-bottom: 400px;
+        width: 60%;
     }
 }
