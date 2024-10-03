@@ -1,28 +1,31 @@
-// Step 1: Initialize x at the top with a default object
+// Step 1: Global Initialization of x
 let x = {
     traverse: function(callback) {
-        // Do nothing or call the callback if needed
-        // You can also just return if you need to avoid any processing
+        // Default implementation does nothing, can be extended if needed
     }
 };
 
-// Other functions can now safely use x without causing errors
+// Function O that uses x safely
 const O = (e) => {
-    x.traverse(function(t) {
-        if (t && t.isMesh) { // Added null check for t
-            if (t.material.map == null) {
-                t.material.map = e;
-            } else if (t.material.map !== e) {
-                t.material.map = e;
-                t.material.metalness = 0.1;
-                t.material.roughness = 0.5;
-                t.material.ior = 1;
+    if (x && typeof x.traverse === 'function') { // Check if x is valid and has traverse method
+        x.traverse(function(t) {
+            if (t && t.isMesh) { // Ensure t is valid
+                if (t.material.map == null) {
+                    t.material.map = e;
+                } else if (t.material.map !== e) {
+                    t.material.map = e;
+                    t.material.metalness = 0.1;
+                    t.material.roughness = 0.5;
+                    t.material.ior = 1;
+                }
             }
-        }
-    });
+        });
+    } else {
+        console.error("x is null or undefined or does not have traverse method");
+    }
 };
 
-// Function to set the actual object later when available
+// Step 2: Function to set x to the actual 3D object
 function initializeX(some3DObject) {
     if (some3DObject) {
         x = some3DObject; // Assign the actual object
@@ -31,15 +34,23 @@ function initializeX(some3DObject) {
     }
 }
 
-// Example of calling initializeX when your 3D object is ready
+// Step 3: Ensure x is set correctly on DOM ready
 document.addEventListener("DOMContentLoaded", function() {
-    // Assume this is your logic to get the 3D object
-    const some3DObject = create3DObject(); // Replace with your actual loading logic
-    initializeX(some3DObject); // Initialize x with the actual object
+    // Logic to create or load your 3D object
+    const some3DObject = create3DObject(); // Replace this with your actual loading logic
+    initializeX(some3DObject); // Initialize x with the actual 3D object
 });
 
-// You can call O(e) anywhere in your code, and it will not throw an error
+// Additional functions that may also use x should have similar checks
+const anotherFunction = () => {
+    if (x && typeof x.traverse === 'function') {
+        // Logic using x
+    } else {
+        console.error("x is null or undefined in anotherFunction");
+    }
+};
 
+// You can call O(e) or any other function that uses x safely now
 
 
 
